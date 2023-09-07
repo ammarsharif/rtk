@@ -11,6 +11,6 @@ const store = configureStore({
     bike: bikeReducer,
     user: userReducer,
   },
-  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger,thunk),
 });
 module.exports = store;
