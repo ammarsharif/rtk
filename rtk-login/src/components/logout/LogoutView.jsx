@@ -13,7 +13,7 @@ const LogoutView = () => {
       <div className="row justify-content-center align-items-center vh-100">
         <div className="col-md-6">
           <div className="text-center">
-            <h4>Logged in as {user.name}</h4>
+            <h4>Logged in as {user.name.toUpperCase()}</h4>
             <button className="btn btn-danger" onClick={logoutHandler}>
               Log Out
             </button>
