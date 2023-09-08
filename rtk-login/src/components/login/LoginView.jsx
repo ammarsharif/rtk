@@ -1,53 +1,35 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../features/reducer/reducer';
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const dispatch = useDispatch();
-  const [userName, setUserName] = useState('Login');
-  const [value, setValue] = useState('');
-  const [email, setEmail] = useState('');
-  const [pass, setPass] = useState('');
-
-  const validateForm = () => {
-    const validationErrors = {};
-
-    if (!value.trim()) {
-      validationErrors.value = alert('Please Enter A Valid UserName');
-    }
-
-    if (!email.trim()) {
-      validationErrors.email = alert('Email Is Not Perfectly Defined');
-    }
-
-    if (pass.length < 8) {
-      validationErrors.password = alert(
-        'Password Contains At Least 8 Characters'
-      );
-    }
-
-    return validationErrors;
-  };
-
+  const users = useSelector((state) => state.user.users);
+  const initialState = { email: '', pass: '' };
+  const [user, setUser] = useState(initialState);
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validateForm();
-
-    if (Object.keys(validationErrors).length === 0) {
+    const matchingUser = users.find(
+      (currentUser) =>
+        currentUser.email === user.email && currentUser.password === user.pass
+    );
+    if (matchingUser) {
       dispatch(
         login({
-          name: value,
-          password: pass,
-          email: email,
-          isLoggedIn: true,
+          name: matchingUser.name,
+          email: matchingUser.email,
+          userId: matchingUser.userId,
         })
       );
-      setUserName('');
-      setValue('');
-      setEmail('');
-      setPass('');
+      setUser(initialState);
+      navigate('/logout');
     } else {
-      setErrors(validationErrors);
+      alert('Invalid Username or Password');
     }
+  };
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
   return (
     <div className="container">
@@ -57,32 +39,26 @@ const Login = () => {
           <form>
             <div className="mb-3 col-4">
               <input
-                value={value}
-                className="form-control"
-                placeholder="Username"
-                onChange={(e) => setValue(e.target.value)}
-              />
-            </div>
-            <div className="mb-3 col-4">
-              <input
                 type="email"
-                value={email}
+                value={user.email}
+                name="email"
                 className="form-control"
                 placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-3 col-4">
               <input
                 type="password"
-                value={pass}
+                value={user.pass}
+                name="pass"
                 className="form-control"
                 placeholder="Password"
-                onChange={(e) => setPass(e.target.value)}
+                onChange={handleChange}
               />
             </div>
             <button className="btn btn-primary " onClick={handleSubmit}>
-              Submit
+              Login
             </button>
           </form>
         </div>
