@@ -21,8 +21,6 @@ const loginData = createSlice({
     },
     deleteArrow: (state, action) => {
       const userIdToDelete = action.payload;
-      console.log(userIdToDelete);
-      console.log(state.users, 'users');
       state.users = state.users.filter(
         (user) => user.userId !== userIdToDelete
       );
