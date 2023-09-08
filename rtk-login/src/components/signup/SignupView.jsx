@@ -37,8 +37,7 @@ const SignupView = () => {
 
     if (Object.keys(validationErrors).length === 0) {
       const matchingUser = users.find(
-        (currentUser) =>
-          currentUser.email === user.email && currentUser.name === user.userName
+        (currentUser) => currentUser.email === user.email
       );
       const newUser = {
         name: user.userName,
