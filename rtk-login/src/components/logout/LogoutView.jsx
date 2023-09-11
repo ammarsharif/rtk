@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout, deleteArrow } from '../../features/reducer/reducer';
+import { logout, deleteUser } from '../../features/reducer/reducer';
 import { useNavigate } from 'react-router-dom';
 const LogoutView = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const LogoutView = () => {
   console.log(user, 'userId');
   const deleteHandler = (e) => {
     e.preventDefault();
-    dispatch(deleteArrow(user.userId));
+    dispatch(deleteUser(user.userId));
     alert(`User ${user.email} is deleted`);
     dispatch(logout());
     navigate('/login');

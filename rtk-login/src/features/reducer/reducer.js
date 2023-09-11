@@ -19,7 +19,7 @@ const loginData = createSlice({
     logout: (state) => {
       state.loggedInUser = {};
     },
-    deleteArrow: (state, action) => {
+    deleteUser: (state, action) => {
       const userIdToDelete = action.payload;
       state.users = state.users.filter(
         (user) => user.userId !== userIdToDelete
@@ -30,4 +30,4 @@ const loginData = createSlice({
 });
 
 export default loginData.reducer;
-export const { login, logout, signUp, deleteArrow } = loginData.actions;
+export const { login, logout, signUp, deleteUser } = loginData.actions;

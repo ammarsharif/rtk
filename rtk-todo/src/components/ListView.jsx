@@ -29,7 +29,6 @@ const ListView = () => {
       alert('Please enter a valid input');
     }
   };
-  //   console.log(data);
 
   return (
     <div className="container mt-5">
@@ -45,11 +44,8 @@ const ListView = () => {
                 placeholder="Add a new task..."
                 onChange={(e) => setTask({ ...task, text: e.target.value })}
               />
-              <button
-                className="btn btn-outline-secondary mx-1"
-                type="submit" // Change the type to "submit"
-              >
-                Add
+              <button className="btn btn-outline-secondary mx-1" type="submit">
+                {task.userId ? 'Update' : 'Add'}
               </button>
             </form>
           </div>
@@ -57,10 +53,7 @@ const ListView = () => {
             <ul className="list-group">
               {Array.isArray(data) && data.length > 0 ? (
                 data.map((todo, key) => (
-                  <li
-                    className="list-group-item d-flex justify-content-between align-items-center"
-                    key={key}
-                  >
+                  <li className="list-group-item" key={key}>
                     <AllListView
                       text={todo?.text}
                       userId={todo?.userId}
