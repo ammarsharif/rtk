@@ -23,7 +23,7 @@ const SignupView = () => {
       validationErrors.email = alert('Email Is Not Perfectly Defined');
     }
 
-    if (user.pass.length < 6) {
+    if (user.pass.length < 1) {
       validationErrors.password = alert(
         'Password Contains At Least 6 Characters'
       );

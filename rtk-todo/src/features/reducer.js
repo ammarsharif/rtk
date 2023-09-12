@@ -3,12 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   list: [],
 };
-const task = {
-  description: '',
-  userId: '',
-  id: '',
-  completed: true,
-};
+
 const listData = createSlice({
   name: 'listData',
   initialState,

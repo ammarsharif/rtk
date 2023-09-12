@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  users: [],
-  loggedInUser: {},
-};
 const loginData = createSlice({
-  name: 'Sign In',
-  initialState,
+  name: 'SignIn',
+  initialState: {
+    users: [],
+    loggedInUser: {},
+    userId: '',
+  },
   reducers: {
     signUp: (state, action) => {
       const oldUsers = state.users ?? [];

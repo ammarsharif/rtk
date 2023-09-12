@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteTask } from '../features/reducer';
-import { AiOutlineReload } from 'react-icons/ai';
+import { TbReload } from 'react-icons/tb';
 const AllListView = (props) => {
   const dispatch = useDispatch();
   const deleteHandler = () => {
@@ -24,7 +24,7 @@ const AllListView = (props) => {
           className="btn btn-outline-secondary btn-sm mt-1 mx-1"
           onClick={updateHandler}
         >
-          <AiOutlineReload />
+          <TbReload />
         </button>
       </div>
     </div>
