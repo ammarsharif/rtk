@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 const ListView = () => {
   const [task, setTask] = useState({
     text: '',
-    userId: '',
+    id: '',
   });
   const data = useSelector((state) => state.reducer.list);
   const uuid = uuidv4();
@@ -16,14 +16,14 @@ const ListView = () => {
     e.preventDefault();
     const inputAsString = task.text.toString();
     if (inputAsString.length > 0 && inputAsString.trim().length > 0) {
-      if (task.userId) {
-        dispatch(updateTask({ text: inputAsString, userId: task.userId }));
+      if (task.id) {
+        dispatch(updateTask({ text: inputAsString, id: task.id }));
       } else {
-        dispatch(addTask({ text: inputAsString, userId: uuid }));
+        dispatch(addTask({ text: inputAsString, id: uuid }));
       }
       setTask({
         text: '',
-        userId: '',
+        id: '',
       });
     } else {
       alert('Please enter a valid input');
