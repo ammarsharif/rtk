@@ -1,5 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import userReducer from '../features/reducer/reducer';
+import taskReducer from '../features/reducer/taskReducer';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -8,16 +9,15 @@ const persistConfig = {
   storage,
 };
 
-// const rootReducer = {
-//   user: userReducer,
-// };
-
-const persistedReducer = persistReducer(persistConfig, userReducer);
-
+// const userPersistReducer = persistReducer(persistConfig, userReducer);
+// const taskPersistReducer = persistReducer(persistConfig, taskReducer);
+const rootReducer = combineReducers({
+  user: userReducer,
+  UserTask: taskReducer,
+});
+const reducer = persistReducer(persistConfig, rootReducer);
 const store = configureStore({
-  reducer: {
-    user: persistedReducer,
-  },
+  reducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }), //For Error Prevention
 });

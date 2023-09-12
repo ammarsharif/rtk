@@ -23,7 +23,7 @@ const Login = () => {
         })
       );
       setUser(initialState);
-      navigate('/logout');
+      navigate('/todo');
     } else {
       alert('Invalid Username or Password');
     }
